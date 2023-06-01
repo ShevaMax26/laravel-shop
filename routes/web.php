@@ -4,6 +4,8 @@ use App\Http\Controllers;
 use App\Http\Controllers\Category;
 use App\Http\Controllers\Tag;
 use App\Http\Controllers\Color;
+use App\Http\Controllers\User;
+use App\Http\Controllers\Product;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -46,4 +48,24 @@ Route::group(['prefix' => 'colors'], function () {
     Route::get('/{color}/edit', Color\EditController::class)->name('color.edit');
     Route::patch('/{color}', Color\UpdateController::class)->name('color.update');
     Route::delete('/{color}', Color\DestroyController::class)->name('color.destroy');
+});
+
+Route::group(['prefix' => 'users'], function () {
+    Route::get('/', User\IndexController::class)->name('user.index');
+    Route::get('/create', User\CreateController::class)->name('user.create');
+    Route::post('/', User\StoreController::class)->name('user.store');
+    Route::get('/{user}', User\ShowController::class)->name('user.show');
+    Route::get('/{user}/edit', User\EditController::class)->name('user.edit');
+    Route::patch('/{user}', User\UpdateController::class)->name('user.update');
+    Route::delete('/{user}', User\DestroyController::class)->name('user.destroy');
+});
+
+Route::group(['prefix' => 'products'], function () {
+    Route::get('/', Product\IndexController::class)->name('product.index');
+    Route::get('/create', Product\CreateController::class)->name('product.create');
+    Route::post('/', Product\StoreController::class)->name('product.store');
+    Route::get('/{product}', Product\ShowController::class)->name('product.show');
+    Route::get('/{product}/edit', Product\EditController::class)->name('product.edit');
+    Route::patch('/{product}', Product\UpdateController::class)->name('product.update');
+    Route::delete('/{product}', Product\DestroyController::class)->name('product.destroy');
 });
