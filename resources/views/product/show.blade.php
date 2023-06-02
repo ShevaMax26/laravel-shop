@@ -26,8 +26,10 @@
                     <div class="card">
                         <div class="card-header">
                             <div class="d-flex align-items-center">
-                                <a href="{{ route('product.index') }}"><i class="fas fa-arrow-circle-left mr-5 text-white"></i></a>
-                                <a href="{{ route('product.edit', $product->id) }}" class="btn btn-warning mr-3">Edit</a>
+                                <a href="{{ route('product.index') }}"><i
+                                        class="fas fa-arrow-circle-left mr-5 text-white"></i></a>
+                                <a href="{{ route('product.edit', $product->id) }}"
+                                   class="btn btn-warning mr-3">Edit</a>
                                 <form action="{{ route('product.destroy', $product->id) }}" method="post">
                                     @csrf
                                     @method('delete')
@@ -38,19 +40,63 @@
 
                         <div class="card-body table-responsive p-0">
                             <table class="table table-hover text-nowrap">
-                                <thead>
                                 <tr>
-                                    <th>№</th>
-                                    <th>Name</th>
-                                    <th></th>
+                                    <th>Title</th>
+                                    <td>{{ $product->title }}</td>
                                 </tr>
-                                </thead>
-                                <tbody>
-                                    <tr>
-                                        <td>{{ $product->id }}</td>
-                                        <td><a href="{{route('product.show', $product->id)}}" class="text-white">{{ $product->title }}</a></td>
-                                    </tr>
-                                </tbody>
+                                <tr>
+                                    <th>Description</th>
+                                    <td>{{ $product->description }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Content</th>
+                                    <td>
+                                        <textarea style="border: none; outline: none; background: transparent; color: white; height: 100px; width: 100%;" readonly>{{ $product->content }}</textarea></td>
+                                </tr>
+                                <tr>
+                                    <th>Image</th>
+                                    <td>
+                                        <div class="mb-2">
+                                            <img src="{{ asset('storage/' . $product->preview_image) }}" alt="preview_image" class="w-25">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Price</th>
+                                    <td>$ {{ $product->price }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Count</th>
+                                    <td>{{ $product->count }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Category</th>
+                                    <td>{{ $product->category->title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Tags</th>
+                                    <td>
+                                        @foreach($product->tags as $tag)
+                                            <span
+                                                style="background: #0c7f0f; padding: 2px 5px; border-radius: 3px">{{ $tag->title }}</span>
+                                        @endforeach
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Colors</th>
+                                    <td>
+                                        <div class="d-flex">
+                                            @foreach($product->colors as $color)
+                                                <div
+                                                    style="width: 22px; height: 22px; margin-right: 7px; border-radius: 3px; background: {{ '#' . $color->title }};"></div>
+                                            @endforeach
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>It published</th>
+                                    <td>{{ $product->is_published ? 'Yes' : 'No' }}</td>
+                                </tr>
                             </table>
                         </div>
 
