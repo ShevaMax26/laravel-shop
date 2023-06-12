@@ -26,6 +26,7 @@
                     @csrf
                     @method('patch')
                     <div class="form-group">
+                        <label>Title:</label>
                         <input type="text" name="title" class="form-control mb-3" placeholder="Name"
                                value="{{ $product->title }}">
 
@@ -34,6 +35,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label>Description:</label>
                         <input type="text" name="description" class="form-control mb-3" placeholder="Description"
                                value="{{ $product->description }}">
 
@@ -42,6 +44,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label>Content:</label>
                         <textarea name="content" class="form-control mb-3" placeholder="Content"
                                   rows="5">{{ $product->content }}</textarea>
 
@@ -50,6 +53,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label>Price:</label>
                         <input type="number" name="price" class="form-control mb-3" placeholder="Price"
                                value="{{ $product->price }}">
 
@@ -58,6 +62,16 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label>Old Price:</label>
+                        <input type="number" name="old_price" class="form-control mb-3" placeholder="Old price"
+                               value="{{ $product->old_price }}">
+
+                        @error('old_price')
+                        <div>{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Count:</label>
                         <input type="number" name="count" class="form-control mb-3" placeholder="Count"
                                value="{{ $product->count }}">
 
@@ -66,6 +80,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label>Category:</label>
                         <select name="category_id" class="form-control select2" style="width: 100%;">
                             @foreach($categories as $category)
                                 <option
@@ -80,6 +95,22 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label>Group(model):</label>
+                        <select name="group_id" class="form-control select2" style="width: 100%;">
+                            @foreach($groups as $group)
+                                <option
+                                    value="{{ $group->id }}" {{ $group->id == $product->group_id ? 'selected' : '' }}>
+                                    {{ $group->title }}
+                                </option>
+                            @endforeach
+                        </select>
+
+                        @error('group_id')
+                        <div>{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Tags:</label>
                         <select name="tags[]" class="tags" multiple="multiple" data-placeholder="Select tags"
                                 style="width: 100%;">
                             @foreach($tags as $tag)
@@ -93,6 +124,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
+                        <label>Color:</label>
                         <select name="colors[]" class="colors" multiple="multiple" data-placeholder="Select colors"
                                 style="width: 100%;">
                             @foreach($colors as $color)
@@ -106,7 +138,7 @@
                         @enderror
                     </div>
                     <div class="form-group">
-                        <label>Add image</label>
+                        <label>Preview Image</label>
                         <div class="mb-2">
                             <img src="{{ asset('storage/' . $product->preview_image) }}" alt="preview_image" class="w-25">
                         </div>
@@ -115,11 +147,28 @@
                                 <input type="file" class="custom-file-input" name="preview_image">
                                 <label class="custom-file-label">Choose file</label>
                             </div>
-                            <div class="input-group-append">
-                                <span class="input-group-text">Upload</span>
-                            </div>
                         </div>
                         @error('preview_image')
+                        <div class="text-danger mt-1">{{ $message }}</div>
+                        @enderror
+                    </div>
+                    <div class="form-group">
+                        <label>Product Image</label>
+                        <div class="d-flex flex-column">
+                            <div class="custom-file">
+                                <input name="product_images[]" type="file" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label">Choose file</label>
+                            </div>
+                            <div class="custom-file">
+                                <input name="product_images[]" type="file" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label">Choose file</label>
+                            </div>
+                            <div class="custom-file">
+                                <input name="product_images[]" type="file" class="custom-file-input" id="exampleInputFile">
+                                <label class="custom-file-label">Choose file</label>
+                            </div>
+                        </div>
+                        @error('product_images[]')
                         <div class="text-danger mt-1">{{ $message }}</div>
                         @enderror
                     </div>

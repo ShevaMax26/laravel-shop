@@ -38,6 +38,9 @@
                             <input type="number" name="price" class="form-control mb-3" placeholder="Price" value="{{ old('price') }}">
                         </div>
                         <div class="form-group">
+                            <input type="number" name="old_price" class="form-control mb-3" placeholder="Old price" value="{{ old('old_price') }}">
+                        </div>
+                        <div class="form-group">
                             <input type="number" name="count" class="form-control mb-3" placeholder="Count" value="{{ old('count') }}">
                         </div>
                         <div class="form-group">
@@ -45,6 +48,14 @@
                                 <option selected="selected" disabled>Select category</option>
                                 @foreach($categories as $category)
                                     <option value="{{ $category->id }}">{{ $category->title }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                        <div class="form-group">
+                            <select name="group_id" class="form-control select2" style="width: 100%;">
+                                <option selected="selected" disabled>Select group</option>
+                                @foreach($groups as $group)
+                                    <option value="{{ $group->id }}">{{ $group->title }}</option>
                                 @endforeach
                             </select>
                         </div>
@@ -70,6 +81,31 @@
                                 </div>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input name="product_images[]" type="file" class="custom-file-input" id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input name="product_images[]" type="file" class="custom-file-input" id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <div class="input-group">
+                                <div class="custom-file">
+                                    <input name="product_images[]" type="file" class="custom-file-input" id="exampleInputFile">
+                                    <label class="custom-file-label" for="exampleInputFile">Choose file</label>
+                                </div>
+                            </div>
+                        </div>
+
                         <div class="d-flex align-items-center">
                             <button type="submit" class="btn btn-success">Create</button>
                             <a href="{{ route('product.index') }}"><i class="fas fa-arrow-circle-left ml-3 text-white"></i></a>

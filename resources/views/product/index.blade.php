@@ -49,6 +49,7 @@
                                     <th>Description</th>
                                     <th>Content</th>
                                     <th>Price</th>
+                                    <th>Old Price</th>
                                     <th>Count</th>
                                     <th></th>
                                 </tr>
@@ -60,7 +61,8 @@
                                         <td><a href="{{route('product.show', $product->id)}}" class="text-white">{{ $product->title }}</a></td>
                                         <td>{{ Str::limit($product->description, 15, '...') }}</td>
                                         <td>{{ Str::limit($product->content, 15, '...') }}</td>
-                                        <td>{{ $product->price }}</td>
+                                        <td>${{ $product->price }}</td>
+                                        <td>{{ $product->old_price ?  ('$'.$product->old_price) : '' }}</td>
                                         <td>{{ $product->count }}</td>
                                         <td>
                                             <div class="d-flex align-items-center">

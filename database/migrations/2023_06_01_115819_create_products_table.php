@@ -29,6 +29,11 @@ return new class extends Migration
                 ->cascadeOnDelete()
                 ->cascadeOnUpdate()
                 ->nullable();
+            $table->foreignIdFor(\App\Models\Group::class)
+                ->constrained()
+                ->cascadeOnDelete()
+                ->cascadeOnUpdate()
+                ->nullable();
 
             $table->timestamps();
         });

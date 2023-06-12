@@ -28,10 +28,13 @@ class StoreRequest extends FormRequest
             'description' => 'required|string',
             'content' => 'required|string',
             'preview_image' => 'required|file',
+            'product_images' => 'required|array',
             'price' => 'required|integer',
+            'old_price' => 'nullable|integer',
             'count' => 'required|integer',
             'is_published' => 'nullable',
             'category_id' => 'required|integer|exists:categories,id',
+            'group_id' => 'nullable|integer|exists:groups,id',
             'tags' => 'nullable|array',
             'colors' => 'nullable|array',
         ];

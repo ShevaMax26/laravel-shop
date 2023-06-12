@@ -3,6 +3,9 @@
 namespace Database\Seeders;
 
 // use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Color;
+use App\Models\Product;
+use App\Models\Tag;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
@@ -14,11 +17,23 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
-        // \App\Models\User::factory(10)->create();
+        $this->call([
+            CategorySeeder::class,
+            ColorSeeder::class,
+            TagSeeder::class,
+            GroupSeeder::class,
+        ]);
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $tags = Tag::all();
+        $colors = Color::all();
+        $products = Product::factory(5)->create();
+
+        foreach ($products as $product) {
+            $tagsIds = $tags->random(random_int(1, 6))->pluck('id');
+            $product->tags()->attach($tagsIds);
+
+            $colorIds = $colors->random(1)->pluck('id');
+            $product->colors()->attach($colorIds);
+        }
     }
 }

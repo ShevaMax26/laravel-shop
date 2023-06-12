@@ -3,8 +3,8 @@
 <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>AdminLTE 3 | Dashboard 2</title>
-
+    <title>Shop - Laravel</title>
+    <link rel="icon" type="image/x-icon" href="{{ asset('favicon.png') }}">
     <!-- Google Font: Source Sans Pro -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Select2 -->
@@ -166,6 +166,12 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('group.index') }}" class="nav-link">
+                            <i class="nav-icon fas fa-th-list"></i>
+                            <p>Groups</p>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('tag.index') }}" class="nav-link">
                             <i class="nav-icon fas fa-tags"></i>
                             <p>Tags</p>
@@ -225,7 +231,13 @@
 
 <script src="{{ asset('adminlte/plugins/select2/js/select2.full.min.js') }}"></script>
 
+<script src="{{ asset('adminlte/plugins/bs-custom-file-input/bs-custom-file-input.min.js') }}"></script>
+
+
 <script>
+    $(function () {
+        bsCustomFileInput.init();
+    });
     $('.tags').select2()
     $('.colors').select2()
 </script>

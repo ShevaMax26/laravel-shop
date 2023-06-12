@@ -54,16 +54,30 @@
                                         <textarea style="border: none; outline: none; background: transparent; color: white; height: 100px; width: 100%;" readonly>{{ $product->content }}</textarea></td>
                                 </tr>
                                 <tr>
-                                    <th>Image</th>
+                                    <th>Preview Image</th>
                                     <td>
                                         <div class="mb-2">
-                                            <img src="{{ asset('storage/' . $product->preview_image) }}" alt="preview_image" class="w-25">
+                                            <img src="{{ asset('storage/' . $product->preview_image) }}" alt="preview_image">
+                                        </div>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <th>Product Image</th>
+                                    <td>
+                                        <div class="mb-2 d-flex align-items-center" style="max-width: 150px">
+                                            @foreach($product->productImages as $productImage)
+                                                <img src="{{ asset('storage/' . $productImage->file_path) }}" alt="preview_image" class="w-100 mr-2">
+                                            @endforeach
                                         </div>
                                     </td>
                                 </tr>
                                 <tr>
                                     <th>Price</th>
-                                    <td>$ {{ $product->price }}</td>
+                                    <td>${{ $product->price }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Old Price</th>
+                                    <td>{{ isset($product->old_price) ? '$'.$product->old_price : '-'  }}</td>
                                 </tr>
                                 <tr>
                                     <th>Count</th>
@@ -72,6 +86,10 @@
                                 <tr>
                                     <th>Category</th>
                                     <td>{{ $product->category->title }}</td>
+                                </tr>
+                                <tr>
+                                    <th>Group</th>
+                                    <td>{{ $product->group->title }}</td>
                                 </tr>
                                 <tr>
                                     <th>Tags</th>
