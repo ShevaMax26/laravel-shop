@@ -84,6 +84,14 @@
                           </div>
                       </div>
                   </div>
+
+                  <div class="row w-25">
+                      <input type="text" v-model="name" name="name" placeholder="Enter your name">
+                      <input type="email" v-model="email" name="email" placeholder="Enter your email">
+                      <input type="text" v-model="address" name="address" placeholder="Enter your address">
+                      <input @click.prevent="storeOrder" type="submit" class="btn btn-success" value="To order">
+                  </div>
+
                   <div class="row pt-120">
                       <div class="col-xl-6 col-lg-7 wow fadeInUp animated">
                           <div class="cart-total-box">
@@ -103,7 +111,7 @@
                                           <p>Subtotal</p>
                                       </div>
                                       <div class="right">
-                                          <p>${{ totalPrice() }}</p>
+                                          <p>${{ totalPrice }}</p>
                                       </div>
                                   </li>
                                   <li>
@@ -119,7 +127,7 @@
                                           <p>Total Price:</p>
                                       </div>
                                       <div class="right">
-                                          <p>${{ totalPrice() }}</p>
+                                          <p>${{ totalPrice }}</p>
                                       </div>
                                   </li>
                               </ul>
@@ -139,16 +147,45 @@ export default {
 
   data() {
     return {
-        products: []
+        products: [],
+        name: '',
+        email: '',
+        address: '',
     }
   },
   mounted() {
     $(document).trigger('changed')
     this.getCartProducts()
-      this.totalPrice()
+      // this.totalPrice()
+  },
+
+  computed: {
+      totalPrice() {
+          let total = 0;
+          this.products.forEach( product => {
+              total += product.price * product.qty
+          })
+          return total
+      },
   },
 
   methods: {
+      storeOrder() {
+          this.axios.post('/api/orders', {
+              'products': this.products,
+              'name': this.name,
+              'email': this.email,
+              'address': this.address,
+              'total_price': this.totalPrice,
+          })
+              .then(res => {
+                  console.log(res);
+              })
+              .finally( v => {
+                  $(document).trigger('changed')
+              })
+      },
+
       getCartProducts() {
           this.products = JSON.parse(localStorage.getItem('cart'))
       },
@@ -172,13 +209,13 @@ export default {
       updateCart() {
           localStorage.setItem('cart', JSON.stringify(this.products))
       },
-      totalPrice() {
-          let sum = 0;
-          for (let i = 0; i < this.products.length; i++) {
-              sum += this.products[i].price * this.products[i].qty;
-          }
-          return sum;
-      },
+      // totalPrice() {
+      //     let sum = 0;
+      //     for (let i = 0; i < this.products.length; i++) {
+      //         sum += this.products[i].price * this.products[i].qty;
+      //     }
+      //     return sum;
+      // },
   },
 }
 </script>
