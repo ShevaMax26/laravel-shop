@@ -16,7 +16,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:wght@300;400;500;600;700&family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- FlatIcon Css -->
     <link rel="stylesheet" href="{{ asset('assets/fonts/flaticon.css') }}">
-
+    <link rel="stylesheet" href="{{ asset('adminlte/plugins/fontawesome-free/css/all.min.css') }}">
     <!-- Slick Slider Css -->
     <link rel="stylesheet" href="{{ asset('assets/css/plugin/slick.css') }}">
     <!--  Ui Tabs Css -->

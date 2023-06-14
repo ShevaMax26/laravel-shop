@@ -69,7 +69,7 @@
                     <div class="small-box bg-danger">
                         <div class="inner">
                             <h3>65</h3>
-                            <p>Reviews</p>
+                            <p>Posts</p>
                         </div>
                         <div class="icon">
                             <i class="fas fa-comment-dots"></i>

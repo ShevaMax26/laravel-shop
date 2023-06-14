@@ -8,6 +8,7 @@ use App\Http\Controllers\Tag;
 use App\Http\Controllers\Color;
 use App\Http\Controllers\User;
 use App\Http\Controllers\Product;
+use App\Http\Controllers\Blog;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -81,6 +82,16 @@ Route::group(['prefix' => 'admin'], function () {
         Route::get('/{product}/edit', Product\EditController::class)->name('product.edit');
         Route::patch('/{product}', Product\UpdateController::class)->name('product.update');
         Route::delete('/{product}', Product\DestroyController::class)->name('product.destroy');
+    });
+
+    Route::group(['prefix' => 'blog'], function () {
+        Route::get('/', Blog\Post\IndexController::class)->name('blog.post.index');
+        Route::get('/create', Blog\Post\CreateController::class)->name('blog.post.create');
+        Route::post('/', Blog\Post\StoreController::class)->name('blog.post.store');
+        Route::get('/{post}', Blog\Post\ShowController::class)->name('blog.post.show');
+        Route::get('/{post}/edit', Blog\Post\EditController::class)->name('blog.post.edit');
+        Route::patch('/{post}', Blog\Post\UpdateController::class)->name('blog.post.update');
+        Route::delete('/{post}', Blog\Post\DestroyController::class)->name('blog.post.destroy');
     });
 });
 

@@ -1,6 +1,5 @@
 <template>
   <div>
-
     <main class="overflow-hidden">
 
       <!-- newsLetter_popup Start -->
@@ -2411,7 +2410,6 @@
       </section>
       <!--End Blog Three-->
     </main>
-
   </div>
 </template>
 
